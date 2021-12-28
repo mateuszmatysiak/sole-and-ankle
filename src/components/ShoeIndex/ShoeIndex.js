@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components/macro";
 
-import { WEIGHTS } from "../../constants";
+import { QUERIES, WEIGHTS } from "../../constants";
 
 import Breadcrumbs from "../Breadcrumbs";
 import Select from "../Select";
-import Spacer from "../Spacer";
 import ShoeSidebar from "../ShoeSidebar";
 import ShoeGrid from "../ShoeGrid";
 
@@ -15,16 +14,18 @@ const ShoeIndex = ({ sortId, setSortId }) => {
       <MainColumn>
         <Header>
           <Title>Running</Title>
-          <Select
-            label="Sort"
-            value={sortId}
-            onChange={(ev) => setSortId(ev.target.value)}
-          >
-            <option value="newest">Newest Releases</option>
-            <option value="price">Price</option>
-          </Select>
+          <ShoeFilterWrapper>
+            <Select
+              label="Sort"
+              value={sortId}
+              onChange={(ev) => setSortId(ev.target.value)}
+            >
+              <option value="newest">Newest Releases</option>
+              <option value="price">Price</option>
+            </Select>
+          </ShoeFilterWrapper>
         </Header>
-        <Spacer size={34} />
+
         <ShoeGrid />
       </MainColumn>
       <LeftColumn>
@@ -33,7 +34,6 @@ const ShoeIndex = ({ sortId, setSortId }) => {
           <Breadcrumbs.Crumb href="/sale">Sale</Breadcrumbs.Crumb>
           <Breadcrumbs.Crumb href="/sale/shoes">Shoes</Breadcrumbs.Crumb>
         </Breadcrumbs>
-        <Spacer size={42} />
         <ShoeSidebar />
       </LeftColumn>
     </Wrapper>
@@ -45,13 +45,28 @@ const Wrapper = styled.div`
   align-items: baseline;
   flex-direction: row-reverse;
   gap: 32px;
+
+  @media ${QUERIES.tabletAndDown} {
+    flex-direction: column-reverse;
+    gap: 0;
+  }
 `;
 
 const LeftColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
   flex-basis: 248px;
+
+  @media ${QUERIES.tabletAndDown} {
+    flex-basis: unset;
+  }
 `;
 
 const MainColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
   flex: 1;
 `;
 
@@ -64,6 +79,12 @@ const Title = styled.h2`
   font-size: 1.5rem;
   font-weight: ${WEIGHTS.medium};
   margin-right: auto;
+`;
+
+const ShoeFilterWrapper = styled.div`
+  @media ${QUERIES.mobileAndDown} {
+    display: none;
+  }
 `;
 
 export default ShoeIndex;

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { COLORS } from "../../constants";
+import { COLORS, QUERIES } from "../../constants";
 
 import SearchInput from "../SearchInput";
 import UnstyledButton from "../UnstyledButton";
@@ -30,6 +30,10 @@ const Wrapper = styled.div`
   color: ${COLORS.gray[300]};
   background-color: ${COLORS.gray[900]};
   padding: 8px 32px;
+
+  @media ${QUERIES.tabletAndDown} {
+    display: none;
+  }
 `;
 
 const MarketingMessage = styled.span`

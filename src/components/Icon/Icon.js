@@ -1,17 +1,13 @@
-import React from 'react';
-import styled from 'styled-components/macro';
-import {
-  Search,
-  Menu,
-  ShoppingBag,
-  ChevronDown,
-} from 'react-feather';
+import React from "react";
+import styled from "styled-components/macro";
+import { Search, Menu, ShoppingBag, ChevronDown, X } from "react-feather";
 
 const icons = {
   search: Search,
   menu: Menu,
-  'shopping-bag': ShoppingBag,
-  'chevron-down': ChevronDown,
+  "shopping-bag": ShoppingBag,
+  "chevron-down": ChevronDown,
+  x: X,
 };
 
 const Icon = ({ id, color, size, strokeWidth, ...delegated }) => {
