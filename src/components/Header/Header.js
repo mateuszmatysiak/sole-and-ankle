@@ -21,12 +21,30 @@ const Header = () => {
           <Logo />
         </LogoWrapper>
         <DesktopNav>
-          <NavLink href="/sale">Sale</NavLink>
-          <NavLink href="/new">New&nbsp;Releases</NavLink>
-          <NavLink href="/men">Men</NavLink>
-          <NavLink href="/women">Women</NavLink>
-          <NavLink href="/kids">Kids</NavLink>
-          <NavLink href="/collections">Collections</NavLink>
+          <NavLink href="/sale">
+            <MainText>Sale</MainText>
+            <HoverText>Sale</HoverText>
+          </NavLink>
+          <NavLink href="/new">
+            <MainText>New&nbsp;Releases</MainText>
+            <HoverText>New&nbsp;Releases</HoverText>
+          </NavLink>
+          <NavLink href="/men">
+            <MainText>Men</MainText>
+            <HoverText>Men</HoverText>
+          </NavLink>
+          <NavLink href="/women">
+            <MainText>Women</MainText>
+            <HoverText>Women</HoverText>
+          </NavLink>
+          <NavLink href="/kids">
+            <MainText>Kids</MainText>
+            <HoverText>Kids</HoverText>
+          </NavLink>
+          <NavLink href="/collections">
+            <MainText>Collections</MainText>
+            <HoverText>Collections</HoverText>
+          </NavLink>
         </DesktopNav>
         <Filler></Filler>
 
@@ -96,16 +114,46 @@ const DesktopNav = styled.nav`
 `;
 
 export const NavLink = styled.a`
+  position: relative;
   font-size: 1.125rem;
   text-transform: uppercase;
   text-decoration: none;
   color: ${COLORS.gray[900]};
   font-weight: ${WEIGHTS.medium};
   white-space: nowrap;
+  overflow: hidden;
 
   &:first-of-type {
     color: ${COLORS.secondary};
   }
+`;
+
+const Text = styled.span`
+  display: block;
+  transform: translateY(var(--translate-from));
+  transition: transform 350ms;
+  will-change: transform;
+
+  @media (prefers-reduced-motion: no-preference) {
+    ${NavLink}:hover & {
+      transform: translateY(var(--translate-to));
+    }
+  }
+`;
+
+const MainText = styled(Text)`
+  --translate-from: 0%;
+  --translate-to: -100%;
+`;
+
+const HoverText = styled(Text)`
+  --translate-from: 100%;
+  --translate-to: 0%;
+
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-weight: ${WEIGHTS.bold};
 `;
 
 const LogoWrapper = styled.div`
